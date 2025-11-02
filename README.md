@@ -200,32 +200,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - Presentation templates are basic (can be extended)
 - No user authentication (single-user application)
 
-## 📄 License
-
-This project is open-source and available under the MIT License.
-
-## 👨‍💻 Author
-
-[Your Name]
-
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
-
-## 🙏 Acknowledgments
-
-- Google Gemini AI for powerful language model
-- PptxGenJS for PowerPoint generation
-- Next.js team for excellent framework
-- MagicSlides for design inspiration
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-
-1. Check the [Issues](https://github.com/yourusername/ppt_viewer/issues) page
-2. Create a new issue with detailed description
-3. Contact via email
-
 ---
 
 **Note**: Make sure to replace `your_gemini_api_key_here` in `.env.local` with your actual API key before running the application.

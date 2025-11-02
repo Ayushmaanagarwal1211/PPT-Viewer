@@ -9,8 +9,6 @@ import { downloadPPT } from "@/lib/pptGenerator";
 import { Send } from "lucide-react";
 
 export default function Home() {
-  // For demo, use a static username. Replace with auth if needed.
-  const username = "piyuindia4";
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [presentation, setPresentation] = useState<Presentation | null>(null);
@@ -34,7 +32,6 @@ export default function Home() {
   ) => {
     setIsLoading(true);
 
-    // Show thoughts
     const thoughtSteps: ThoughtStep[] = [
       {
         id: "1",
@@ -63,7 +60,6 @@ export default function Home() {
     setThoughts(thoughtSteps);
 
     try {
-      // Step 1
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setThoughts((prev) =>
         prev.map((step, i) =>
@@ -71,7 +67,6 @@ export default function Home() {
         )
       );
 
-      // Step 2
       setThoughts((prev) =>
         prev.map((step, i) =>
           i === 1 ? { ...step, status: "in-progress" } : step
@@ -84,7 +79,6 @@ export default function Home() {
         )
       );
 
-      // Step 3
       setThoughts((prev) =>
         prev.map((step, i) =>
           i === 2 ? { ...step, status: "in-progress" } : step
@@ -123,10 +117,8 @@ export default function Home() {
           : `I've created a presentation titled "${data.presentation.title}" with ${data.presentation.slides.length} slides. You can preview it on the right and download it when ready.`
       );
 
-      // Clear thoughts after a delay
       setTimeout(() => setThoughts([]), 3000);
     } catch (error) {
-      console.error("Error:", error);
       addMessage(
         "assistant",
         "Sorry, I encountered an error while generating the presentation. Please try again."
@@ -160,7 +152,6 @@ export default function Home() {
         "Your presentation has been downloaded successfully!"
       );
     } catch (error) {
-      console.error("Error downloading presentation:", error);
       addMessage(
         "assistant",
         "Sorry, there was an error downloading the presentation."
@@ -171,17 +162,15 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex overflow-hidden">
-      {/* Chat Section - Animated */}
+    <div className="min-h-screen bg-gray-50 flex overflow-hidden max-xl:flex-col">
       <div
-        className={`flex flex-col transition-all duration-500 ease-out ${
+        className={`flex flex-col transition-all duration-500 ease-out max-xl:w-full ${
           presentation ? "w-1/2" : "w-full"
         } bg-white border-r border-gray-200`}
       >
-        {/* Header */}
         <div className="px-6 py-8 border-b border-gray-200 text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Hello, {username}!
+            Hello, User!
           </h1>
           <p className="text-gray-600 text-base">
             What do you want me to generate today?
@@ -195,9 +184,8 @@ export default function Home() {
         <div className="w-full flex-1 flex flex-col justify-end">
           <ChatHistory messages={messages} />
         </div>
-        {/* Chat input box */}
-        <div className="px-6 py-4 border-t border-gray-200">
-          <div className="flex items-center bg-gray-50 border-2 border-gray-200 rounded-2xl px-5 py-4 focus-within:ring-2 focus-within:ring-blue-200 focus-within:border-blue-300 transition">
+        <div className="px-6 py-4 border-t border-gray-200 flex justify-center items-center">
+          <div className="max-w-5xl w-full justify-center flex items-center bg-gray-50 border-2 border-gray-200 rounded-2xl px-5 py-4 focus-within:ring-2 focus-within:ring-blue-200 focus-within:border-blue-300 transition">
             <button
               type="button"
               className="text-gray-400 hover:text-gray-500 focus:outline-none mr-4 flex-shrink-0"
@@ -221,7 +209,7 @@ export default function Home() {
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={(e) => e.key === "Enter" && handleSubmit()}
+              onKeyDown={(e) => e.key === "Enter" && handleSubmit(e)}
               placeholder="Start with a topic, we'll turn it into slides!"
               className="flex-1 bg-transparent border-none outline-none text-gray-700 text-sm placeholder-gray-400"
               disabled={isLoading}
@@ -238,7 +226,7 @@ export default function Home() {
         </div>
       </div>
       <div
-        className={`flex flex-col transition-all duration-500 ease-out overflow-hidden ${
+        className={`flex flex-col transition-all duration-500 ease-out overflow-hidden max-xl:w-full ${
           presentation ? "w-1/2 opacity-100 translate-x-0" : "w-0 opacity-0"
         }`}
       >

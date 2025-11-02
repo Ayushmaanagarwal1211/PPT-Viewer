@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { Message } from "@/types";
 
 interface ChatHistoryProps {
@@ -16,7 +15,7 @@ export default function ChatHistory({ messages }: ChatHistoryProps) {
             Start a conversation to generate your presentation
           </p>
           <p className="text-sm">
-            Try:{" "}
+            Try:
             <span className="italic text-gray-500">
               Create a presentation about Artificial Intelligence
             </span>

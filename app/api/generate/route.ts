@@ -81,10 +81,8 @@ Guidelines:
     const response = result.response;
     const text = response.text();
 
-    // Extract JSON from the response
     let jsonText = text.trim();
 
-    // Remove markdown code blocks if present
     if (jsonText.startsWith("```json")) {
       jsonText = jsonText.replace(/```json\n?/g, "").replace(/```\n?/g, "");
     } else if (jsonText.startsWith("```")) {

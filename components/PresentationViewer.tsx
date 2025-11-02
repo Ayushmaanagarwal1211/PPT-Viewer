@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { Presentation } from "@/types";
 import { Download, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -48,19 +48,9 @@ export default function PresentationViewer({
     }
   };
 
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") nextSlide();
-      if (e.key === "ArrowLeft") prevSlide();
-    };
-    window.addEventListener("keydown", handleKeyPress);
-    return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [currentSlide, totalSlides]);
 
   return (
     <div className="flex flex-col h-full bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 md:p-6 border-b bg-white border-gray-200">
         <div className="flex-1 mb-4 sm:mb-0">
           <h2 className="font-semibold text-gray-900 text-xl md:text-2xl">
@@ -81,7 +71,6 @@ export default function PresentationViewer({
         </button>
       </div>
 
-      {/* Slide Viewer */}
       <div className="flex-1 p-4 md:p-8 overflow-y-auto flex items-center justify-center">
         <div className="w-full max-w-5xl">
           <div
@@ -92,7 +81,7 @@ export default function PresentationViewer({
             }}
           >
             {slide.layout === "title" ? (
-              <div className="flex flex-col items-center justify-center h-full px-8 md:px-16 py-12 text-center space-y-6">
+              <div className="flex flex-col overflow-y-scroll items-center justify-center h-full px-8 md:px-16 py-12 text-center space-y-6">
                 <div className="space-y-4">
                   <h1
                     className={`text-5xl md:text-6xl lg:text-7xl font-bold leading-tight ${
@@ -124,30 +113,30 @@ export default function PresentationViewer({
                 />
               </div>
             ) : (
-              <div className="h-full px-8 md:px-14 py-10 md:py-14 flex flex-col justify-center overflow-hidden">
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-10 md:mb-12">
-                  {slide.title}
-                </h2>
-                <ul className="space-y-5 md:space-y-6">
-                  {slide.content.map((item, index) => (
-                    <li key={index} className="flex items-start gap-4 group">
-                      <div className="flex-shrink-0 w-2 h-2 rounded-full bg-blue-600 mt-3 group-hover:scale-150 transition-transform duration-300" />
-                      <span className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300">
-                        {item}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="relative h-full px-8 md:px-16 py-12  overflow-y-auto">
+                <div className="flex flex-col items-center justify-center min-h-full space-y-6">
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-7">
+                    {slide.title}
+                  </h2>
+                  <ul className="space-y-5 md:space-y-6">
+                    {slide.content.map((item, index) => (
+                      <li key={index} className="flex items-start gap-4 group">
+                        <div className="flex-shrink-0 w-2 h-2 rounded-full bg-blue-600 mt-3 group-hover:scale-150 transition-transform duration-300" />
+                        <span className="text-md md:text-lg lg:text-2xl text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             )}
           </div>
         </div>
       </div>
 
-      {/* Navigation Bar */}
       <div className="px-4 md:px-8 py-6 bg-white border-t border-gray-200">
         <div className="max-w-5xl mx-auto flex flex-col space-y-4">
-          {/* Slide Indicators */}
           <div className="flex items-center justify-center gap-2 flex-wrap">
             {presentation.slides.map((_, index) => (
               <button
@@ -163,7 +152,6 @@ export default function PresentationViewer({
             ))}
           </div>
 
-          {/* Navigation Buttons */}
           <div className="flex items-center justify-center gap-3">
             <button
               onClick={prevSlide}
@@ -190,7 +178,6 @@ export default function PresentationViewer({
             </button>
           </div>
 
-          {/* Keyboard hint */}
           <p className="text-center text-xs text-gray-400">
             💡 Use arrow keys or buttons to navigate slides
           </p>

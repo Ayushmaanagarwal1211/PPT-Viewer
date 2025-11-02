@@ -7,7 +7,6 @@ export function generatePPT(presentation: Presentation): PptxGenJS {
   presentation.slides.forEach((slide, index) => {
     const pptSlide = pptx.addSlide();
 
-    // Set background color if provided
     if (slide.backgroundColor) {
       pptSlide.background = { color: slide.backgroundColor };
     } else {
@@ -15,7 +14,6 @@ export function generatePPT(presentation: Presentation): PptxGenJS {
     }
 
     if (index === 0 || slide.layout === "title") {
-      // Title slide
       pptSlide.addText(slide.title, {
         x: 0.5,
         y: 2.5,
@@ -39,7 +37,6 @@ export function generatePPT(presentation: Presentation): PptxGenJS {
         });
       }
     } else if (slide.layout === "image-content") {
-      // Image with content
       pptSlide.addText(slide.title, {
         x: 0.5,
         y: 0.5,
@@ -71,7 +68,6 @@ export function generatePPT(presentation: Presentation): PptxGenJS {
         bullet: true,
       });
     } else {
-      // Standard content slide
       pptSlide.addText(slide.title, {
         x: 0.5,
         y: 0.5,
