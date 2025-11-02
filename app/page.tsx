@@ -6,7 +6,7 @@ import ChatHistory from "@/components/ChatHistory";
 import PresentationViewer from "@/components/PresentationViewer";
 import Thoughts from "@/components/Thoughts";
 import { downloadPPT } from "@/lib/pptGenerator";
-import { Send } from "lucide-react";
+import { Link, Send } from "lucide-react";
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -186,24 +186,7 @@ export default function Home() {
         </div>
         <div className="px-6 py-4 border-t border-gray-200 flex justify-center items-center">
           <div className="max-w-5xl w-full justify-center flex items-center bg-gray-50 border-2 border-gray-200 rounded-2xl px-5 py-4 focus-within:ring-2 focus-within:ring-blue-200 focus-within:border-blue-300 transition">
-            <button
-              type="button"
-              className="text-gray-400 hover:text-gray-500 focus:outline-none mr-4 flex-shrink-0"
-              disabled
-            >
-              <svg
-                width="20"
-                height="20"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                viewBox="0 0 24 24"
-              >
-                <path d="M21.44 11.05 12.99 19.5a5 5 0 0 1-7.07-7.07l9.19-9.19a3.5 3.5 0 0 1 4.95 4.95l-9.2 9.19a2 2 0 1 1-2.83-2.83l8.49-8.48" />
-              </svg>
-            </button>
+            <Link color="gray" className="mr-4" />
 
             <input
               type="text"
