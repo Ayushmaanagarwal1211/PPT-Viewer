@@ -48,7 +48,6 @@ export default function PresentationViewer({
     }
   };
 
-
   return (
     <div className="flex flex-col h-full bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 md:p-6 border-b bg-white border-gray-200">
@@ -177,10 +176,6 @@ export default function PresentationViewer({
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
-
-          <p className="text-center text-xs text-gray-400">
-            💡 Use arrow keys or buttons to navigate slides
-          </p>
         </div>
       </div>
     </div>
