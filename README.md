@@ -15,7 +15,7 @@ An AI-powered chat application that generates and edits PowerPoint presentations
 
 ## 🚀 Demo
 
-[Live Demo Link] - (Will be added after deployment)
+[Live Demo Link](https://ppt-viewer-rust.vercel.app/)
 
 ## 📋 Prerequisites
 
